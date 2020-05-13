@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import useForm from './useForm.js';
+import validate from "./validateLogin"
 
 const Form = () => {
+  const { handleChange, handleSubmit, values, errors } = useForm(submit, validate);
+
   return (
     <div>
       <form noValidate onSubmit={handleSubmit} >
@@ -11,7 +15,9 @@ const Form = () => {
               name="email"
               type="email"
               value={values.email}
-              onChange={handleChange} />
+              onChange={handleChange}
+            />
+            {errors.email && <p>{errors.email}</p>}
           </div>
         </div>
         <div>
@@ -21,7 +27,9 @@ const Form = () => {
               name="password"
               type="password"
               value={values.password}
-              onChange={handleChange} />
+              onChange={handleChange}
+            />
+            {errors.password && <p>{errors.password}</p>}
           </div>
         </div>
         <button type="sumbit">Submit</button>
@@ -32,3 +40,5 @@ const Form = () => {
 
 //form
 //label / input for email
+
+export default Form;
